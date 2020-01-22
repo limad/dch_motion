@@ -1,0 +1,13 @@
+{
+    "id": "dchmotion",
+    "name" : "Dlink DCH-Motion",
+    "description" : "Plugin pour controller les équipements DLink Motion DCH‑S150",
+    "licence" : "AGPL",
+    "author" : "Limad44",
+    "require" : "3.2",
+    "category" : "monitoring",
+  	"changelog" : "https://limad.github.io/plugin-dchmotion/fr_FR/changelog.html",
+	"documentation" : "https://limad.github.io/plugin-dchmotion/",
+	"language" : ["fr_FR","en_US"],
+	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile"]
+}

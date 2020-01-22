@@ -1,0 +1,416 @@
+<div class="eqLogic eqLogic-widget allowResize allowReorderCmd allowLayout #custom_layout# #eqLogic_class# #category#"
+      style="min-height: 160px;min-width:140px; position: relative; width:#width#; height:#height#;background-color:#background-color#!important; color:#color#; border:#border#; border-radius:#border-radius#;#style#"
+      data-eqType="#eqType#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-cat_color="#catcolore#"
+      data-version="#version#" data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#">
+   
+       
+  <span class="statusCmd"></span>
+  <span class="cmd refresh pull-right cursor" data-cmd_id="#refresh_id#">
+		<i class="fas fa-sync"></i>
+  </span>
+  <center class="widget-name">
+    <a class="wname" href="#eqLink#" style="#hideEqLogicName#">#name_display#<span class="object_name">#object_name#</span></a>
+  </center>
+	 <!--		  
+   <a href="#eqLink#">#name_display# 
+					<span style="font-size: 0.85em;position: relative;top:-0px;">#object_name# #deviceName#</span>
+					</a> -->	
+  <script type="text/javascript">
+	
+    ///////////////
+    $('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
+		//console.log("refresh_id: "   )
+      jeedom.cmd.execute({id: '#refresh_id#'});
+    });
+   
+   $('.eqLogic[data-eqLogic_uid=#uid#]').ready(function(el) { 
+		catcolor = $('.eqLogic[data-eqLogic_uid=#uid#] .widget-name').css('background-color');
+		catcolor_a = catcolor.replace(')', ', 0.5)').replace('rgb', 'rgba');
+		
+		//console.log("catcolor_a: " + catcolor_a);
+		$('.eqLogic[data-eqLogic_uid=#uid#]').closest('.eqLogic-widget').attr('data-cat_color', catcolor);				
+		eq_width = $('.eqLogic[data-eqLogic_uid=#uid#]').closest('.eqLogic-widget').css('width');
+		eq_height = $('.eqLogic[data-eqLogic_uid=#uid#]').closest('.eqLogic-widget').css('height');
+		cat_color = $('.eqLogic[data-eqLogic_uid=#uid#]').closest('.eqLogic-widget').attr('data-cat_color');
+		if ('#deviceName#' != '' ) {
+        	$('.eqLogic[data-eqLogic_uid=#uid#] .wname').append(' - #deviceName#');
+        }
+     
+     	if ('#etat#' == 1) {
+        	$('.eqLogic[data-eqLogic_uid=#uid#] .icon_etat').css('color', cat_color + '!important');
+        }
+     	
+     	//infcmd
+	});
+	</script>
+
+  
+  
+  
+  
+  
+    <span class="cmd cmd-widget noRefresh" data-cmd_id="#setMoff_id#" style="display:none;"></span>
+    <span class="cmd cmd-widget noRefresh" data-cmd_id="#setMon_id#" style="display:none;"></span>
+    
+    
+<div class="eq_body">
+	<center>
+	
+      <div class="cmd cmd-widget " >
+        <div class="title ">
+          <div class="tooltips cmd cmd-widget #etat_history#" data-subtype="other" data-type="info" data-cmd_id="#etat_id#" data-eqlogic_id="#id#" title="Historique" >Etat</div>
+        </div>
+    <div class="content-sm tooltips cmd cmd-widget etat cursor" data-type="action" data-cmd_id="#etat_id#" data-version="dashboard" data-eqlogic_id="#id#" data-template="tmplicon" data-subtype="other" data-version="dashboard" >
+    	<span class="iconCmd"><i class="icon_orange icon fas fa-power-off icon_etat"></i></span>
+  	</div>
+    
+	</div>
+   	</br>
+      
+      
+      
+      
+    
+	<div class="smartplug_Infos_#uid# Pan_one">
+            
+			<div class="tooltips cmd cmd-widget #lastDetection_history#" data-type="info" data-subtype="string" data-cmd_id="#lastDetection_id#" data-cmd_uid="cmd#lastDetection#" data-version="dashboard" data-template="line" data-eqlogic_id="#id#" title="Valeur du: #lastDetection_collectDate#">
+                <div class="content-xs">
+                    <span   class="cmdName">Last Detection: </span> 
+                    <strong class="state">#lastDetection_human#</strong>
+                </div>
+			</div> 
+      		</br>
+            <!--
+            <div class="tooltips cmd cmd-widget #motionTstamp_history#" data-type="info" data-subtype="numeric" data-cmd_id="#motionTstamp_id#" data-cmd_uid="cmd#motionTstamp#" data-version="dashboard" data-template="line" data-eqlogic_id="#id#" title="Valeur du: #motionTstamp_collectDate#">
+                <div class="content-xs">
+                    <span   class="cmdName">motion Tstamp: </span> 
+                    <strong class="state">#dd#</strong>
+                </div>
+			</div> 
+            -->
+          	<div class="tooltips cmd cmd-widget #motionState_history#" data-type="info" data-subtype="binary" data-cmd_id="#motionState_id#" data-cmd_uid="cmd#motionState#" data-version="dashboard" data-template="line" data-eqlogic_id="#id#" title="Valeur du: #motionState_collectDate#">
+                <div class="content-xs">
+                    <span   class="cmdName">motion State: </span> 
+                    <strong class="state value#sensivityset_id#"> #motionState#</strong>
+                  <span class="icon jeedom-mouvement"> </span>
+                  <!-- <span class="fas fa-rss mostion_icon" style="margin-right: -3px;"> </span>-->
+                </div>
+			</div> 
+         </div>
+        
+	<div class="smartplug_Infos_#uid# Pan_two" style="display : none;">
+     <table class="smartplug_sensitivity_#uid#" style="width: 80%; height:;">
+     <tr>       
+    <td colspan="3" style="text-align: center;">
+      		<center>
+          <div class="tooltips cmd cmd-widget #sensitivity_history#" data-type="info" data-subtype="numeric" data-cmd_id="#sensitivity_id#" data-cmd_uid="cmd#sensitivity_id#_#id#" data-version="dashboard" data-template="line" data-eqlogic_id="#id#" title="Valeur du: #sensitivity_collectDate#">
+                <div class="content-xs">
+                    <span   class="cmdName">sensitivity: </span> 
+                    <strong class="state value#sensivityset_id#">  #sensitivity#</strong>
+                </div>
+			</div> 
+              </center>
+     </td>
+  </tr>
+       
+       		<tr>
+                   <td style="width: 20px; text-align: left; font-size : 0.9em;">   0</td>
+                   
+                   <td style="width: 122px; text-align: center; font-size : 0.9em;">
+
+<div class="cmd cmd-widget" data-type="action" data-subtype="slider" data-template="default" data-cmd_id="#sensivityset_id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#id#">
+  
+  <div class="content-xs">
+    <div class="slider" value="#sensitivity#" id="sliderdch">
+		<span  class="ui-slider-handle" id="custom-handle"></span>
+    </div>
+  </div>
+<script>
+    //$('.eqLogic[data-eqLogic_uid=#uid#] .refresh')
+    $(".eqLogic[data-eqLogic_uid=#uid#] .slider.slider-horizontal").css('z-index',1);
+    jeedom.cmd.update['#sensivityset_id#'] = function(_options){
+      $(".cmd[data-cmd_id=#sensivityset_id#] .slider").slider({
+        min: ('1' == '') ? 0 : parseInt('1'),
+        max: ('100' == '') ? 100 : parseInt('100'),
+        value: ('#sensitivity#' == '') ? 0 : parseInt(_options.display_value),
+        slide: function(event, ui) {
+          //$(".value#sensivityset_id#").show()
+          $(".value#sensivityset_id#").html(ui.value);
+        }
+      })
+    }
+    jeedom.cmd.update['#sensivityset_id#']({display_value:'#sensitivity#'});
+    
+    $(".eqLogic[data-eqLogic_uid=#uid#] .slider").on('slidestop', function (event,ui) {
+      jeedom.cmd.execute({id: '#sensivityset_id#', value: {slider: ui.value}});
+                          
+      //$(".value#sensivityset_id#").hide();
+    });
+  </script> 
+ 
+</div>                     
+                     
+                     
+                     
+                     
+                     
+                     
+
+                     
+                     
+                     
+                     
+                    
+                    
+                   </td>
+                   
+                   <td style="width: 20px; text-align: right; font-size : 0.9em;">100<br></td>
+           </tr>
+              		
+          
+  </table> 
+    
+  
+                 
+   
+
+
+<style>
+ #slider .ui-slider-handle {
+  outline: 0;
+  background: #337ab7 !Important;
+  border-radius: 20%;
+  #top: 1em;
+   ##width:1.6em;
+   #height:1.6em;
+  #left:-.6em;
+  #text-decoration:none;
+   #text-align:center;
+    #font-size: 10px;
+    #padding: 3px;
+    #text-shadow: 0 1px 0 #FFFFFF;
+    #text-decoration:none;
+   #width:1.6em;
+   #height:1.6em;
+   #left:-.6em;
+   ##text-decoration:none;
+   #text-align:center;
+}
+
+#slider.ui-slider-horizontal {
+  top: 1em;
+  left: 5%;
+  height: .2em;
+  width: 70%;
+  border: none;
+  background: #ccc !Important;
+}
+  </style>
+   
+<div class="slider" id="slider">
+  
+</div>
+<script>
+  $( function() {
+    var handle = $( "#custom-handle" );
+    $( "#slider" ).slider({
+      create: function() {
+        $( "#custom-handle" ).text( $( this ).slider( "value" ) );
+      },
+      slide: function( event, ui ) {
+        $( "#custom-handle" ).text( ui.value );
+      }
+    });
+  } );
+  </script>
+  
+  
+  
+  
+  
+  	</div> 
+
+</div><!--  eq_body  -->
+
+
+ 
+ 
+   
+ </center>   
+    
+ 
+  
+
+
+
+
+
+ <div class="table_bottom" style="">
+	<table style="position:absolute; right:0px; bottom:0px; width: 100%; height:" cellspacing="0" cellpadding="0" border="0">	
+		
+		<tr style="height: 22px;">
+				<td class="td_bot12" style="width: 18px; text-align: left;">
+					
+					 <!-- 
+					 <tr style="height: 22px; position:absolute; right:0px; bottom:0px; width: 100%; border-radius:#border-radius#; color: #color#; #style#">
+					 info autres   
+				<span class="pull-left cursor"><i class="icon_orange icon fas fa-power-off infcmd_ico"></i></span>--> 
+                  <span class="infcmd pull-left cursor" title='Autres infos' style="margin-left:3px;">
+		<i class="icon_orange icon fas fa-info-circle infcmd_ico"></i>
+  </span>
+                  
+								
+					<div class="infhtm" style="display: none"> 
+						
+                        <div class="cmd cmd-widget">
+                            <div class="content-xs">
+                                <span class="cmdName">motionTstamp: </span> 
+                                <strong class="DeviceName">#motionTstamp#</strong>
+                            </div>
+                        </div>
+                        </br>
+                        <div class="cmd cmd-widget">
+                            <div class="content-xs">
+                                <span class="cmdName">macAddress: </span> 
+                                <strong class="macAddress">#macAddress#</strong>
+                            </div>
+                        </div>
+                        </br>
+                        <div class="cmd cmd-widget">
+                            <div class="content-xs">
+                                <span class="cmdName">Tentatives échouées: </span> 
+                                <strong class="lastCom">#numberTryWithoutSuccess#</strong>
+                            </div>
+                        </div>
+                    </div>
+					
+					
+					
+					
+				  </td>
+				<td class="td_bot2" style="text-align: center;">
+				</td>
+				<td class="td_bot3" style="width: 18px;text-align: right;">
+					  
+					  <i class="fas fa-retweet cursor tooltips changecmd noRefresh" title='Changer commandes' style="margin-right: 3px;"></i>
+						
+					  
+				  </td>
+			</tr>
+	
+				<script>
+		if ('#numberTryWithoutSuccess#' == 0) {
+			//$('.eqLogic[data-eqLogic_uid=#uid#] .infcmd_ico').css('color', '#8ddb34!important');
+          	$('.eqLogic[data-eqLogic_uid=#uid#] .infcmd_ico').removeAttr( 'style' );
+          	//console.log('numberTryWithoutSuccess: ' + #numberTryWithoutSuccess#);
+		}else if ('#numberTryWithoutSuccess#' >= 3) {
+			//$('.eqLogic[data-eqLogic_uid=#uid#] .infcmd_ico').css('color', '#8ddb34!important');
+          	$('.eqLogic[data-eqLogic_uid=#uid#] .infcmd_ico').attr('style', 'color : #C37D28!important');
+          	//console.log('numberTryWithoutSuccess: ' + #numberTryWithoutSuccess#);
+		} else if('#numberTryWithoutSuccess#' >= 60 || '#eqstate#' != 'ok') {
+			//console.log('numberTryWithoutSuccess: ' + #numberTryWithoutSuccess#)
+			$('.eqLogic[data-eqLogic_uid=#uid#] .infcmd_ico').attr('style', 'color : #B93A3E!important');
+		}	
+					 
+					//**************************************//	
+					$('.eqLogic[data-eqLogic_uid=#uid#] .infcmd').on('click', function () {
+						$('.eqLogic[data-eqLogic_uid=#uid#] .infcmd').popover({
+							container: "body",
+							html: true,
+							placement: "auto",
+							selector : true,
+							//title: false, //"<strong>Liste des équipements</strong>",
+							content: function () {return $('.eqLogic[data-eqLogic_uid=#uid#] .infhtm').html(); } ,
+							
+						})
+							.on("show.bs.popover", function () { 
+								$(this).data("bs.popover").tip()
+								.css({
+									"max-width": "500px",
+									"max-height":  "400px",
+									//overflow: "auto",
+									"overflow-y": "auto",
+									"background-color": "#474646",//'background-color',
+									"background": "#474646",
+								
+								}); 
+								setTimeout(function () {
+									$('.eqLogic[data-eqLogic_uid=#uid#] .infcmd').popover('hide');
+								}, 8000);
+							});
+						$('.eqLogic[data-eqLogic_uid=#uid#] .infcmd').popover('show'); 
+					});
+					
+                  
+                  
+					
+					///////////////////////
+					$('.eqLogic[data-eqLogic_uid=#uid#] .changecmd').on('click',function () {
+                        $('.eqLogic[data-eqLogic_uid=#uid#] .Pan_two').toggle();
+                        $('.eqLogic[data-eqLogic_uid=#uid#] .Pan_one').toggle();
+
+                        //$('.eqLogic[data-eqLogic_uid=#uid#] .TotalConso').toggle();
+                       // $('.eqLogic[data-eqLogic_uid=#uid#] .currentRunTime').toggle();
+                    });
+					
+					</script>
+		</table>		
+	</div>
+	 <!-- fin table_bottom    -->
+
+
+        
+<script>
+		if ('#mostionState#' == '1' || '#mostionState#' == 1) {
+            $('.eqLogic[data-eqLogic_uid=#uid#] .mostion_icon').css('color', '#8ddb34!Important');
+        } else if ('#mostionState#' == '0' || '#mostionState#' == 0) {
+            $('.eqLogic[data-eqLogic_uid=#uid#] .mostion_icon').css('color', 'blue!Important');
+        }
+  		///////////////
+  		
+
+///////////////////////
+$('.eqLogic[data-eqLogic_uid=#uid#] .etat').on('click', function() {
+    if('#etat#' == '1'){
+        jeedom.cmd.execute({id: '#setMoff_id#'});  
+    }else{
+        jeedom.cmd.execute({id: '#setMon_id#'});
+    }
+});
+
+
+jeedom.cmd.update['#motionTstamp_id#'] = function(_options){
+    var cmd = $('.cmd[data-cmd_id=#motionTstamp_id#]');
+    if('#_time_widget_#' == '1'){
+      jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
+    }else{
+      cmd.find('.timeCmd').parent().remove();
+    }
+    if (_options.display_value == '1' || _options.display_value >= 1 || _options.display_value == '99' || _options.display_value == 'on') {
+      if (jeedom.cmd.normalizeName('lock') == 'on') {
+        cmd.hide();
+      }else{
+        cmd.show();
+        cmd.find('.iconCmd').empty().append("<i class='icon_green icon jeedom-lock-ferme'></i>");
+      }
+    } else {
+      if (jeedom.cmd.normalizeName('lock') == 'off') {
+        cmd.hide();
+      }else{
+        cmd.show();
+        cmd.find('.iconCmd').empty().append("<i class='icon_orange icon jeedom-lock-ouvert'></i>");
+      }
+    }
+  }
+  jeedom.cmd.update['#motionTstamp_id#']({display_value:'0',valueDate:'',collectDate:'',alertLevel:'none'});
+  $('.cmd[data-cmd_uid=cmd#motionTstamp_id#__1890422523__] .iconCmd').off().on('click', function () {
+    jeedom.cmd.execute({id: '#motionTstamp_id#'});
+  });
+
+
+
+
+</script>
+	
+</div>
+<!-- Fin eqLogic-widget  -->
